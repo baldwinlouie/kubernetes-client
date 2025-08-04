@@ -145,7 +145,7 @@ class Client
 	/**
 	 * The constructor.
 	 */
-	public function __construct(array $options = [], RepositoryRegistry $repositoryRegistry = null, ClientInterface $httpClient = null, HttpRequestFactory $httpRequestFactory = null, StreamFactoryInterface $streamFactory = null)
+	public function __construct(array $options = [], ?RepositoryRegistry $repositoryRegistry = null, ?ClientInterface $httpClient = null, ?HttpRequestFactory $httpRequestFactory = null, ?StreamFactoryInterface $streamFactory = null)
 	{
 		$this->setOptions($options);
 		$this->classRegistry = $repositoryRegistry ?: new RepositoryRegistry();
@@ -383,7 +383,7 @@ class Client
 	 * @throws \Maclof\Kubernetes\Exceptions\BadRequestException
 	 */
 	#[\ReturnTypeWillChange]
-	public function sendRequest(string $method, string $uri, array $query = [], $body = null, bool $namespace = true, string $apiVersion = null, array $requestOptions = [])
+	public function sendRequest(string $method, string $uri, array $query = [], $body = null, bool $namespace = true, ?string $apiVersion = null, array $requestOptions = [])
 	{
 		$baseUri = $apiVersion ? ('apis/' . $apiVersion) : ('api/' . $this->apiVersion);
 		if ($namespace) {
